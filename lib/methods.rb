@@ -1,0 +1,3 @@
+def result(command)
+
+end
