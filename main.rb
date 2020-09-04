@@ -1,22 +1,23 @@
 require_relative 'lib/methods'
 
-# шаг1: Приветствие для пользователя и краткая инструкция.
-puts "Введите команду либо введите 'help' для просмотра доступных команд, 'exit' для выхода"
-puts "Для добавления команды введите 'add'"
+p " - Введите команду либо введите 'help' для просмотра доступных команд"
+p " - 'exit' для выхода"
+p " - Для добавления команды введите 'add'"
 
+print ' > '
+command = STDIN.gets.chomp!
 
-print_commands.each_with_index { |com, ind| p  "#{ind + 1}  #{com.chomp}" }
-
-# шаг2: Принять, запрос пользователя.
-print '>'
-command = STDIN.gets
-
-# шаг2/1: Пользователь вводит команду
-
-# шаг2/2: Ползователь вводит 'help'
-
-# шаг2/3: Пользователь вводит 'exit'
-
-
-# шаг3: Результат работы команды, переход к шагу 1
-p result(command)
+if command == 'help'
+  print_commands.each_with_index { |com, ind| p "#{ind + 1}  #{com.chomp}" }
+elsif command == 'add'
+  p ' - Введите команду, которую неоюходимо добавить в программу'
+  p ' - Длинна команды должна быть более 1-го символа'
+  p " - Либо 'Enter' для выхода"
+  print ' > '
+  str = STDIN.gets
+  p recording_commands(str)
+elsif command == 'exit'
+  abort
+else
+  p result(command)
+end

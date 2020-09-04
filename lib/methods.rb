@@ -3,9 +3,6 @@ def result(command)
 end
 
 def print_commands
-  current_path = File.dirname(__FILE__)
-  file_path = current_path + "/data/ls_commands.txt"
-
   if File.exist?(file_path)
     File.open(file_path, 'r') { |f| f.readlines }
   else
@@ -14,11 +11,15 @@ def print_commands
 end
 
 def recording_commands(str)
-  file_path = "/data/ls_commands.txt"
-
-  if File.exist?(file_path)
-    File.open(file_path, 'w') { |f| f.write("#{str}") }
+  if File.exist?(file_path) && str.size > 1
+    File.open(file_path, 'a+') { |f| f.write("#{str}") }
   else
-    "Файл не найден, запись невозможна"
+    "Запись невозможна"
   end
+end
+
+private_methods
+def file_path
+  current_path = File.dirname(__FILE__)
+  current_path + "/data/ls_commands.txt"
 end
