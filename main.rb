@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'lib/methods'
 
 p " - Введите команду либо введите 'help' для просмотра доступных команд"
