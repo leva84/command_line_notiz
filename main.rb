@@ -1,16 +1,22 @@
-require 'io/console'
 require_relative 'lib/methods'
 
 # шаг1: Приветствие для пользователя и краткая инструкция.
 puts "Введите команду либо введите 'help' для просмотра доступных команд, 'exit' для выхода"
+puts "Для добавления команды введите 'add'"
+
+
+print_commands.each_with_index { |com, ind| p  "#{ind + 1}  #{com.chomp}" }
 
 # шаг2: Принять, запрос пользователя.
-command = nil
+print '>'
+command = STDIN.gets
 
-#while command == '' || command == 'exit'
-  print '>'
-  command = STDIN.gets
-  #end
+# шаг2/1: Пользователь вводит команду
+
+# шаг2/2: Ползователь вводит 'help'
+
+# шаг2/3: Пользователь вводит 'exit'
+
 
 # шаг3: Результат работы команды, переход к шагу 1
 p result(command)
