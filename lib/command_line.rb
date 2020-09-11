@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CommandLine
   attr_accessor :command
 
@@ -6,6 +8,6 @@ class CommandLine
   end
 
   def result
-    IO.popen("#{@command}") { |answer| answer.read.chomp }
+    IO.popen(@command.to_s) { |answer| answer.read.chomp }
   end
 end
