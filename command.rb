@@ -37,7 +37,7 @@ class Command
 
     IO.popen("echo \"  def self.result_work\" >> #{name_new_command}.rb")
     sleep 0.05
-    IO.popen("echo \"    '#{result_of_command_work}'\" >> #{name_new_command}.rb")
+    IO.popen("echo \"    #{result_of_command_work}\" >> #{name_new_command}.rb")
     sleep 0.05
     IO.popen("echo \"  end\" >> #{name_new_command}.rb")
     sleep 0.05
@@ -50,4 +50,3 @@ end
 
 require_relative 'about'
 require_relative 'help'
-require_relative 'about'

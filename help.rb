@@ -4,7 +4,7 @@ class Help < Command
   end
 
   def self.description
-    'выводит список доступных в программе команд'
+    'выводит список доступных команд'
   end
 
   def self.result_work
