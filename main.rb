@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'lib/storage'
-require_relative 'lib/command_line'
+require_relative 'command'
 
 p " - Введите команду либо введите 'help' для просмотра доступных команд"
 p " - 'exit' для выхода"
@@ -10,17 +9,22 @@ p " - Для добавления команды введите 'add'"
 print ' > '
 command = STDIN.gets.chomp!
 
-if command == 'help'
-  Storage.new.print_commands.each_with_index { |com, ind| p "#{ind + 1}  #{com.chomp}" }
+if command == '' || command == 'exit'
+  abort
 elsif command == 'add'
   p ' - Введите команду, которую неоюходимо добавить в программу'
   p ' - Длинна команды должна быть более 1-го символа'
   p " - Либо 'Enter' для выхода"
   print ' > '
-  str = STDIN.gets
-  p Storage.new.recording_command(str)
-elsif command == 'exit'
-  abort
+  name_new_command = STDIN.gets.chomp!
+
+  p 'Введите описание команды(для чего она? что делает?)'
+  description_command = STDIN.gets.chomp!
+
+  p 'Введите работу(код) команды'
+  result_of_command_work = STDIN.gets.chomp!
+
+  p Command.new.create_command(name_new_command, description_command, result_of_command_work)
 else
-  p CommandLine.new(command).result
+  Command.start_command(command)
 end
