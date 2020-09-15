@@ -9,18 +9,22 @@ p " - Для добавления команды введите 'add'"
 print ' > '
 command = STDIN.gets.chomp!
 
-if command == 'help'
-  Command.arr_command.each_with_index { |com, ind| p "#{ind + 1}) - \"#{com.name.downcase}\" #{com.print_command}"}
+if command == '' || command == 'exit'
+  abort
 elsif command == 'add'
   p ' - Введите команду, которую неоюходимо добавить в программу'
   p ' - Длинна команды должна быть более 1-го символа'
   p " - Либо 'Enter' для выхода"
   print ' > '
-  str = STDIN.gets
-  #p Storage.new.recording_command(str)
-  p Command.new.create_command(str)
-elsif command == 'exit'
-  abort
+  name_new_command = STDIN.gets.chomp!
+
+  p 'Введите описание команды(для чего она? что делает?)'
+  description_command = STDIN.gets.chomp!
+
+  p 'Введите работу(код) команды'
+  result_of_command_work = STDIN.gets.chomp!
+
+  p Command.new.create_command(name_new_command, description_command, result_of_command_work)
 else
-  p Command.new
+  Command.start_command(command)
 end

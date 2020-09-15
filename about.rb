@@ -1,18 +1,24 @@
 class About < Command
-  DATA_PATH = '/README.md'
-
-  def self.print_command
-    if File.exist?(file_path)
-      File.open(file_path, 'r') do |f|
-        f.readlines.compact
-      end
-    else
-      'Файл не найден'
-    end
+  def initialize
+    super
   end
 
-  def self.file_path
-    current_path = File.dirname(__FILE__)
-    current_path + DATA_PATH
+  def self.description
+    'описание окружения и самой программы'
+  end
+
+  def self.result_work
+    p " # command_line_notiz v.1.1
+    программа написана на чистом Ruby и может использоваться
+    только при запуске из командной строки.
+    ## Назначение
+    - программа преднозначена для сохранения и использованиякоманд оболочки.
+    - Для простого и более быстрого изучениякоманд оболочки.
+    ## Установка
+    - Подходят все версии Ruby не ниже 2.0.
+    - После установки Ruby необх� - После установки Ruby необходимо скачать каталог с программойи запустить программу
+    `ruby main.rb`
+    - либо `ruby /path_to/main.rb`
+    если запуск программы происходит не из домашней директории."
   end
 end
