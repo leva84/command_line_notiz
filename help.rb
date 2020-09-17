@@ -8,6 +8,6 @@ class Help < Command
   end
 
   def self.result_work
-    Command.arr_command.each_with_index { |com, ind| p "#{ind + 1}) - \"#{com.name.downcase}\" #{com.description}" }
+    Command.hash_command.each { |com, class_com| p "#{com} - #{class_com.description}" }
   end
 end

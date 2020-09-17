@@ -5,16 +5,22 @@ class Command
     super
   end
 
-  def self.arr_command
-    ObjectSpace.each_object(Class).select { |klass| klass < self }
-  end
+  def self.hash_command
+    hash_com = Hash.new
 
-  def self.there_is?(command)
-    arr_command.map { |com| com.to_s.downcase }.include?(command)
+    ObjectSpace.each_object(Class).select do |klass|
+      hash_com[klass.name.to_s.downcase] = klass if (klass < self)
+    end
+
+    hash_com
   end
 
   def self.start_command(command)
-    there_is?(command) ? arr_command.each { |com| return com.result_work if com.to_s.downcase == command } : ('такой команды нет')
+    if hash_command.has_key?(command)
+      hash_command[command].result_work
+    else
+      p 'нет такой команды'
+    end
   end
 
 
