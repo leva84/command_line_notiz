@@ -18,8 +18,10 @@ class Command
   def self.start_command(command)
     if hash_command.has_key?(command)
       hash_command[command].result_work
+    elsif command == 'exit'
+      p 'good by'
     else
-      p 'нет такой команды'
+      p 'there is no such command'
     end
   end
 

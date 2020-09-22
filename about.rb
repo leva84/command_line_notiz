@@ -8,6 +8,7 @@ class About < Command
   end
 
   def self.result_work
-    IO.popen('cat README.md') { |answer| p answer.readlines }
+    current_path = File.dirname(__FILE__)
+    IO.popen('cat ' + current_path + '/README.md') { |answer| p answer.readlines }
   end
 end
