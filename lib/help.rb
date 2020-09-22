@@ -3,6 +3,10 @@ class Help < Command
     super
   end
 
+  def self.name_command
+    'help'
+  end
+
   def self.description
     'выводит список доступных команд'
   end
