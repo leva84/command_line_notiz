@@ -8,6 +8,8 @@ class Help < Command
   end
 
   def result_work
-    Command.new.hash_command.each { |com, class_com| p "#{com} - #{class_com.new.description}" }
+    self.hash_command.each do |com, class_com|
+      p "#{com} - #{class_com.new.description}"
+    end
   end
 end

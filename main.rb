@@ -16,7 +16,7 @@ while command != 'exit'
   puts
 
   print '>'
-  command = STDIN.gets.chomp!
+  command = STDIN.gets.strip!
 
   Command.new.start_command(command)
   p
