@@ -1,17 +1,13 @@
 class Help < Command
-  def initialize
-    super
-  end
-
-  def self.name_command
+  def name_command
     'help'
   end
 
-  def self.description
+  def description
     'выводит список доступных команд'
   end
 
-  def self.result_work
-    Command.hash_command.each { |com, class_com| p "#{com} - #{class_com.description}" }
+  def result_work
+    Command.new.hash_command.each { |com, class_com| p "#{com} - #{class_com.new.description}" }
   end
 end
