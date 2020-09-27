@@ -1,17 +1,17 @@
-class Help < Command
-  def initialize
-    super
-  end
+# frozen_string_literal: true
 
-  def self.name_command
+class Help < Command
+  def name_command
     'help'
   end
 
-  def self.description
+  def description
     'выводит список доступных команд'
   end
 
-  def self.result_work
-    Command.hash_command.each { |com, class_com| p "#{com} - #{class_com.description}" }
+  def result_work
+    self.hash_command.each do |com, class_com|
+      p "#{com} - #{class_com.new.description}"
+    end
   end
 end
