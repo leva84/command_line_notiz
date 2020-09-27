@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Help < Command
   def name_command
     'help'
