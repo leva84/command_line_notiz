@@ -7,17 +7,17 @@ require_relative 'lib/help'
 command = nil
 
 while command != 'exit'
-  p '=================================================='
-  p ' - Введите команду'
-  p " - введите 'help' для просмотра доступных команд"
-  p " - 'exit' для выхода"
-  p
-  p '=================================================='
+  puts '=================================================='
+  puts ' - Введите команду'
+  puts " - введите 'help' для просмотра доступных команд"
+  puts " - 'exit' для выхода"
+  puts
+  puts '=================================================='
   puts
 
   print '>'
-  command = STDIN.gets.strip!
+  command = gets.chomp!
 
-  Command.new.start_command(command)
-  p
+  puts Command.new.start_command(command)
+  puts
 end
