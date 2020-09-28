@@ -10,8 +10,10 @@ class Help < Command
   end
 
   def result_work
+    command_list = []
     self.hash_command.each do |com, class_com|
-      p "#{com} - #{class_com.new.description}"
+      command_list << "#{com} - #{class_com.new.description}"
     end
+    command_list
   end
 end
