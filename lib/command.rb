@@ -1,27 +1,20 @@
 # frozen_string_literal: true
 
 class Command
+  attr_accessor :commands
+
   def initialize
-    @hash_com = {}
-  end
-
-  def hash_command
-    ObjectSpace.each_object(Class).select do |klass|
-      @hash_com[klass.new.name_command] = klass if (klass < Command)
-    end
-
-    @hash_com
+    @commands = CommandRegistry.new.hash_commands
   end
 
   def start_command(command)
-    commands = hash_command
-
-    if commands.key?(command)
-      commands[command].new.result_work
+    if @commands.key?(command)
+      @commands[command].new.result_work
     elsif command == 'exit'
-      p 'good by'
+      'good by'
+      abort
     else
-      p 'there is no such command'
+      'there is no such command'
     end
   end
 end

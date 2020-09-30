@@ -1,4 +1,4 @@
-# command_line_notiz  [v1.3]
+# command_line_notiz  [v1.4]
  [https://github.com/leva84/command_line_notiz]
  программа написана на чистом Ruby и может использоваться только при запуске из командной строки.
 
@@ -42,7 +42,7 @@
         # initialize your class
       end
     
-      def name_command
+      def self.name_command
         "#name your command"
       end
     

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Help < Command
-  def name_command
+  def self.name_command
     'help'
   end
 
@@ -11,8 +11,8 @@ class Help < Command
 
   def result_work
     command_list = []
-    self.hash_command.each do |com, class_com|
-      command_list << "#{com} - #{class_com.new.description}"
+    @commands.each do |com, class_com|
+      command_list << "#{com} - #{class_com.new.description}\n"
     end
     command_list
   end
