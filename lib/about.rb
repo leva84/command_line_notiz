@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class About < Command
-  def name_command
+  def self.name_command
     'about'
   end
 
