@@ -9,9 +9,9 @@ class Help < Command
     'выводит список доступных команд'
   end
 
-  def result_work
+  def command_work
     command_list = []
-    @commands.each do |com, class_com|
+    commands.each do |com, class_com|
       command_list << "#{com} - #{class_com.new.description}\n"
     end
     command_list

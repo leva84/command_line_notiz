@@ -8,8 +8,8 @@ class Command
   end
 
   def start_command(command)
-    if @commands.key?(command)
-      @commands[command].new.result_work
+    if commands.key?(command)
+      commands[command].new.command_work
     elsif command == 'exit'
       'good by'
       abort
