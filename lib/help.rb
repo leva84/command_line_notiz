@@ -11,9 +11,7 @@ class Help < Command
 
   def command_work
     command_list = []
-    commands.each do |com, class_com|
-      command_list << "#{com} - #{class_com.new.description}\n"
-    end
-    command_list
+    commands.each { |com, class_com| command_list << "#{com} - #{class_com.new.description}" }
+    command_list.each { |item| puts item }
   end
 end

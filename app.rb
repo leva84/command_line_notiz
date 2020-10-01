@@ -36,9 +36,9 @@ class App
   def start
     while command != 'exit'
       puts instruction
-      puts work_result
+      work_result
     end
   end
 end
 
-puts App.new.start
+App.new.start
