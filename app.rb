@@ -1,3 +1,11 @@
+# frozen_string_literal: true
+
+require_relative 'lib/command'
+require_relative 'lib/about'
+require_relative 'lib/help'
+require_relative 'lib/command_registry'
+require_relative 'lib/english_word_list'
+
 class App
   attr_accessor :command
 
@@ -5,7 +13,7 @@ class App
     @command = nil
   end
 
-  def print_instruction
+  def instruction
     <<~END
       ==================================================
       - Введите команду
@@ -15,20 +23,22 @@ class App
     END
   end
 
-  def print_result
+  def work_result
     <<~END
       ==================================================
       #{print '>>'}
-      #{@command = gets.chomp!}
-      #{Command.new.start_command(@command)}
+      #{command = gets.chomp!}
+      #{Command.new.start_command(command)}
       ==================================================
     END
   end
 
-  def loop_work
-    while @command != 'exit'
-      puts print_instruction
-      puts print_result
+  def start
+    while command != 'exit'
+      puts instruction
+      work_result
     end
   end
 end
+
+App.new.start
