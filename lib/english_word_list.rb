@@ -17,10 +17,10 @@ class EnglishWordList < Command
 
   def word_hash
     h_words = {}
-    word_list.each do |string|
+    word_list.shuffle.each do |string|
       string.chomp!
-      string = string.split(' ') - ['-']
-      h_words[string[0]] = string[1..string.size]
+      string = string.split(' ')
+      h_words[string[0].downcase] = string[1..string.size]
     end
 
     h_words
