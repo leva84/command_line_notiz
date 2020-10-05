@@ -1,14 +1,10 @@
 class EnglishWordList < Command
-  attr_accessor :word_list
+  attr_reader :word_list
 
   def initialize
     current_path = File.dirname(__FILE__)
     file_path = '/date/word_english_list.txt'
     @word_list = File.readlines(current_path + file_path)
-  end
-
-  def self.name_command
-    'eng-wl'
   end
 
   def description
@@ -62,7 +58,7 @@ class EnglishWordList < Command
     end
   end
 
-  def command_work
+  def call(item=nil)
     words_of_translation
   end
 end
