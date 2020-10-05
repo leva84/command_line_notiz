@@ -7,10 +7,9 @@ require_relative 'lib/command_registry'
 require_relative 'lib/english_word_list'
 
 class App
-  attr_reader :command, :registry
+  attr_reader :registry
 
   def initialize
-    @command = nil
     @registry = CommandRegistry.new
     @registry.register_command('help', Help)
     @registry.register_command('about', About)
