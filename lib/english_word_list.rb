@@ -58,7 +58,7 @@ class EnglishWordList < Command
     end
   end
 
-  def call(item=nil)
+  def call
     words_of_translation
   end
 end

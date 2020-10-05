@@ -5,7 +5,7 @@ class Help < Command
     'выводит список доступных команд'
   end
 
-  def call(registry)
-    registry.commands_names
+  def call
+    App.new.help_for_help_class
   end
 end

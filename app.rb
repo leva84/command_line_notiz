@@ -7,7 +7,7 @@ require_relative 'lib/command_registry'
 require_relative 'lib/english_word_list'
 
 class App
-  attr_reader :command, :registry, :helper
+  attr_reader :command, :registry
 
   def initialize
     @command = nil
@@ -15,6 +15,10 @@ class App
     @registry.register_command('help', Help)
     @registry.register_command('about', About)
     @registry.register_command('eng-wl', EnglishWordList)
+  end
+
+  def help_for_help_class
+    registry.commands_names
   end
 
   def instruction
@@ -36,8 +40,6 @@ class App
 
       if command == 'exit'
         abort
-      elsif command == 'help'
-        Help.new.call(registry)
       else
         registry.run_command(command)
       end
