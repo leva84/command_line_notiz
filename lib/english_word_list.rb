@@ -7,7 +7,7 @@ class EnglishWordList < Command
     @word_list = File.readlines(current_path + file_path)
   end
 
-  def description
+  def self.description
     'программа выводит английские слова и их перевод для изучения'
   end
 

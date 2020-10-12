@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class About < Command
-  def description
+  def self.description
     'описание программы и ее окружения'
   end
 

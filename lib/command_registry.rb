@@ -4,7 +4,7 @@ class CommandRegistry
   end
 
   def register_command(command_name, class_name)
-    commands[command_name] = class_name.new
+    commands[command_name] = class_name
   end
 
   def commands_names
@@ -15,7 +15,7 @@ class CommandRegistry
 
   def run_command(name)
     command = commands[name]
-    command.call if command
+    command.new.call if command
   end
 
   private
