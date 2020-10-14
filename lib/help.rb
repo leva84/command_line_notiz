@@ -6,6 +6,6 @@ class Help < Command
   end
 
   def call
-    registry.commands_names
+    App.new.registry.commands_names
   end
 end

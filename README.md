@@ -35,10 +35,10 @@
     require_relative 'lib/help'
     ...
   ```
-  - зарегистрировать клас необходимо следующим образом - в методе `initialize` класса `Command`
-   (расположен - `command_line_nitiz/lib/command.rb`) необходимо вставить следующее:
+  - зарегистрировать клас необходимо следующим образом - в методе `initialize` класса `App`
+   (расположен - `command_line_nitiz/app.rb`) необходимо вставить следующее:
   `@registry.register_command('command_your_name', ClassYourName)`
-  - в файл внести обязательные методы, для корректной работы программы.
+  - в файл `lib/name_class_your_command.rb` внести обязательные методы, для корректной работы программы.
   Так должен выглядеть шаблон вашего класса:
   ```
      class NameClassYourCommand < Command
