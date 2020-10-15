@@ -1,10 +1,10 @@
 class EnglishWordList < Command
   attr_reader :word_list, :app
+  CURRENT_PATH = File.dirname(__FILE__)
+  FILE_PATH = '/date/word_english_list.txt'
 
   def initialize
-    current_path = File.dirname(__FILE__)
-    file_path = '/date/word_english_list.txt'
-    @word_list = File.readlines(current_path + file_path)
+    @word_list = File.readlines(CURRENT_PATH + FILE_PATH)
     @app = APP
   end
 
@@ -49,9 +49,7 @@ class EnglishWordList < Command
     word_hash.each do |word, translation|
       puts instruction
       puts translation
-
       input = gets.chomp.downcase
-
       result_translation(input, word)
     end
   end
