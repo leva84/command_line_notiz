@@ -7,7 +7,7 @@ class CommandRegistry
     commands[command_name] = class_name
   end
 
-  def commands_names
+  def commands_description
     commands.each do |command, command_class|
       puts "#{command} - #{command_class.description}"
     end

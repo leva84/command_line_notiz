@@ -1,10 +1,11 @@
 class EnglishWordList < Command
-  attr_reader :word_list
+  attr_reader :word_list, :app
 
   def initialize
     current_path = File.dirname(__FILE__)
     file_path = '/date/word_english_list.txt'
     @word_list = File.readlines(current_path + file_path)
+    @app = APP
   end
 
   def self.description
@@ -34,14 +35,11 @@ class EnglishWordList < Command
 
   def result_translation(input, word)
     if input == 'exit'
-      App.new.start
+      app.start
     elsif input == ''
-      puts 'translation of this word:'
-      puts word
+      puts 'translation of this word:', word
     elsif input != word
-      puts 'It is not right'
-      puts 'that is right:'
-      puts word
+      puts 'It is not right', 'that is right:', word
     else
       puts 'Yes!)'
     end
@@ -52,7 +50,7 @@ class EnglishWordList < Command
       puts instruction
       puts translation
 
-      input = gets.downcase.chomp
+      input = gets.chomp.downcase
 
       result_translation(input, word)
     end

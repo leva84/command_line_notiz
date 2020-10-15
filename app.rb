@@ -43,4 +43,6 @@ class App
   end
 end
 
-App.new.start
+APP = App.new
+REGISTRY = APP.registry
+APP.start
