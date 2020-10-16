@@ -1,21 +1,22 @@
 class CommandRegistry
-  def initialize
+  attr_reader :app
+
+  def initialize(app)
+    @app = app
     @commands = {}
   end
 
-  def register_command(command_name, class_name)
-    commands[command_name] = class_name
+  def facade
+    commands.map { |name, class_name| {name: name, description: class_name.description} }
   end
 
-  def commands_description
-    commands.each do |command, command_class|
-      puts "#{command} - #{command_class.description}"
-    end
+  def register_command(command_name, class_name)
+    commands[command_name] = class_name.new(self)
   end
 
   def run_command(name)
     command = commands[name]
-    command.new.call if command
+    command.call if command
   end
 
   private

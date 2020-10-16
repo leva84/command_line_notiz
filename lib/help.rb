@@ -1,17 +1,19 @@
 # frozen_string_literal: true
 
 class Help < Command
-  attr_reader :commands_registry
+  attr_reader :registry
 
-  def initialize
-    @commands_registry = REGISTRY
+  def initialize(registry)
+    @registry = registry
   end
 
-  def self.description
+  def description
     'выводит список доступных команд'
   end
 
   def call
-    commands_registry.commands_description
+    registry.facade.each do |command|
+      puts "#{command[:name]} - #{command[:description]}"
+    end
   end
 end

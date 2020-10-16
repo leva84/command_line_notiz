@@ -10,7 +10,7 @@ class App
   attr_reader :registry
 
   def initialize
-    @registry = CommandRegistry.new
+    @registry = CommandRegistry.new(self)
     @registry.register_command('help', Help)
     @registry.register_command('about', About)
     @registry.register_command('eng-wl', EnglishWordList)
@@ -43,6 +43,4 @@ class App
   end
 end
 
-APP = App.new
-REGISTRY = APP.registry
-APP.start
+App.new.start

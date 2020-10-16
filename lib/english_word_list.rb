@@ -1,14 +1,14 @@
 class EnglishWordList < Command
-  attr_reader :word_list, :app
+  attr_reader :word_list, :app, :registry
   CURRENT_PATH = File.dirname(__FILE__)
   FILE_PATH = '/date/word_english_list.txt'
 
-  def initialize
+  def initialize(registry)
+    @registry = registry
     @word_list = File.readlines(CURRENT_PATH + FILE_PATH)
-    @app = APP
   end
 
-  def self.description
+  def description
     'программа выводит английские слова и их перевод для изучения'
   end
 
@@ -35,7 +35,7 @@ class EnglishWordList < Command
 
   def result_translation(input, word)
     if input == 'exit'
-      app.start
+      registry.app.start
     elsif input == ''
       puts 'translation of this word:', word
     elsif input != word
