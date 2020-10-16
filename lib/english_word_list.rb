@@ -1,5 +1,5 @@
 class EnglishWordList < Command
-  attr_reader :word_list, :app, :registry
+  attr_reader :word_list
   CURRENT_PATH = File.dirname(__FILE__)
   FILE_PATH = '/date/word_english_list.txt'
 

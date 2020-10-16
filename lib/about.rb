@@ -1,12 +1,6 @@
 # frozen_string_literal: true
 
 class About < Command
-  attr_accessor :registry
-
-  def initialize(registry)
-    @registry = registry
-  end
-
   def description
     'описание программы и ее окружения'
   end
