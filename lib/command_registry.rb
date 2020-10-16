@@ -6,7 +6,7 @@ class CommandRegistry
     @commands = {}
   end
 
-  def facade
+  def command_description_by_name
     commands.map { |name, class_name| { name: name, description: class_name.description } }
   end
 

@@ -6,7 +6,7 @@ class Help < Command
   end
 
   def call
-    registry.facade.each do |command|
+    registry.command_description_by_name.each do |command|
       puts "#{command[:name]} - #{command[:description]}"
     end
   end

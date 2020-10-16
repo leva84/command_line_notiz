@@ -1,12 +1,10 @@
 class EnglishWordList < Command
-  FILE_PATH = '/date/word_english_list.txt'
-
   def description
     'программа выводит английские слова и их перевод для изучения'
   end
 
   def word_list
-    File.readlines(CURRENT_PATH + FILE_PATH)
+    File.readlines(current_path + '/date/word_english_list.txt')
   end
 
   def word_hash
