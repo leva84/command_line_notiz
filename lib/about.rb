@@ -6,8 +6,6 @@ class About < Command
   end
 
   def call
-    current_path = File.dirname(__FILE__)
-    path = current_path[0..current_path.size - 4]
-    system('cat ' + path + '/README.md') { |answer| answer.readlines }
+    system("cat #{CURRENT_PATH} README.md") { |answer| answer.readlines }
   end
 end

@@ -1,5 +1,4 @@
 class EnglishWordList < Command
-  CURRENT_PATH = File.dirname(__FILE__)
   FILE_PATH = '/date/word_english_list.txt'
 
   def description

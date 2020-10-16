@@ -7,7 +7,7 @@ class CommandRegistry
   end
 
   def facade
-    commands.map { |name, class_name| {name: name, description: class_name.description} }
+    commands.map { |name, class_name| { name: name, description: class_name.description } }
   end
 
   def register_command(command_name, class_name)
