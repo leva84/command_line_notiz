@@ -1,15 +1,13 @@
 class EnglishWordList < Command
-  attr_reader :word_list
   CURRENT_PATH = File.dirname(__FILE__)
   FILE_PATH = '/date/word_english_list.txt'
 
-  def initialize(registry)
-    @registry = registry
-    @word_list = File.readlines(CURRENT_PATH + FILE_PATH)
-  end
-
   def description
     'программа выводит английские слова и их перевод для изучения'
+  end
+
+  def word_list
+    File.readlines(CURRENT_PATH + FILE_PATH)
   end
 
   def word_hash
