@@ -28,16 +28,12 @@ class App
 
   def start
     loop do
-      puts instruction
       puts '=================================================='
+      puts instruction
       print '>>'
       command = gets.chomp!
-
-      if command == 'exit'
-        abort
-      else
-        registry.run_command(command)
-      end
+      abort if command == 'exit'
+      registry.run_command(command)
       puts '=================================================='
     end
   end

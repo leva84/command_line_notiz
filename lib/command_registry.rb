@@ -6,8 +6,8 @@ class CommandRegistry
     @commands = {}
   end
 
-  def command_description_by_name
-    commands.map { |name, class_name| { name: name, description: class_name.description } }
+  def commands_class_by_names
+    commands.map { |name, class_name| { name: name, class_name: class_name } }
   end
 
   def register_command(command_name, class_name)

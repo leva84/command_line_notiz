@@ -6,6 +6,6 @@ class About < Command
   end
 
   def call
-    system("cat #{current_path} README.md") { |answer| answer.readlines }
+    system("cat #{current_path} README.md")
   end
 end
