@@ -6,12 +6,12 @@ class CommandRegistry
     @commands = {}
   end
 
-  def commands_class_by_names
-    commands.map { |name, class_name| { name: name, class_name: class_name } }
-  end
-
   def register_command(command_name, class_name)
     commands[command_name] = class_name.new(self)
+  end
+
+  def commands_by_names
+    commands.each { |name_com, clacc_com| [name_com, clacc_com] }
   end
 
   def run_command(name)

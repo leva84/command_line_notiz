@@ -6,8 +6,8 @@ class Help < Command
   end
 
   def call
-    registry.commands_class_by_names.each do |command|
-      puts "#{command[:name]} - #{command[:class_name].description}"
+    registry.commands_by_names.each do |command|
+      puts "#{command[0]} - #{command[1].description}"
     end
   end
 end
