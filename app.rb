@@ -7,10 +7,12 @@ require_relative 'lib/command_registry'
 require_relative 'lib/english_word_list'
 
 class App
+  INVITE = '>>'
+
   attr_reader :registry
 
   def initialize
-    @registry = CommandRegistry.new(self)
+    @registry = CommandRegistry.new
     @registry.register_command('help', Help)
     @registry.register_command('about', About)
     @registry.register_command('eng-wl', EnglishWordList)
@@ -27,10 +29,10 @@ class App
   end
 
   def start
+    puts instruction
     loop do
       puts '=================================================='
-      puts instruction
-      print '>>'
+      print INVITE
       command = gets.chomp!
       abort if command == 'exit'
       registry.run_command(command)

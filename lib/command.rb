@@ -6,8 +6,4 @@ class Command
   def initialize(registry)
     @registry = registry
   end
-
-  def current_path
-    File.dirname(__FILE__)
-  end
 end

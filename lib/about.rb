@@ -6,6 +6,6 @@ class About < Command
   end
 
   def call
-    system("cat #{current_path} README.md")
+    system("cat README.md")
   end
 end

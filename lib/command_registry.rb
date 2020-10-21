@@ -1,8 +1,5 @@
 class CommandRegistry
-  attr_reader :app
-
-  def initialize(app)
-    @app = app
+  def initialize
     @commands = {}
   end
 
@@ -10,8 +7,12 @@ class CommandRegistry
     commands[command_name] = class_name.new(self)
   end
 
-  def commands_by_names
-    commands.each { |name_com, clacc_com| [name_com, clacc_com] }
+  def command_names
+    commands.keys.sort
+  end
+
+  def command_by_name(name)
+    commands[name]
   end
 
   def run_command(name)

@@ -4,8 +4,9 @@ class EnglishWordList < Command
   end
 
   def call
+    puts instruction
     words_arr.each do |word_hash|
-      puts instruction, word_hash[:translation]
+      puts word_hash[:translation]
       input = gets.chomp.downcase
       result_translation(input, word_hash[:eng_word])
     end
@@ -14,7 +15,7 @@ class EnglishWordList < Command
   private
 
   def words_list
-    File.readlines(current_path + '/date/word_english_list.txt')
+    File.readlines("#{Dir.pwd}/lib/date/word_english_list.txt")
   end
 
   def normalized_words
@@ -37,7 +38,7 @@ class EnglishWordList < Command
 
   def result_translation(input, eng_word)
     if input == 'exit'
-      registry.app.start
+      abort
     elsif input == ''
       puts 'translation of this word:', eng_word
     elsif input != eng_word
@@ -45,5 +46,6 @@ class EnglishWordList < Command
     else
       puts 'Yes!)'
     end
+    puts '=================================================='
   end
 end
