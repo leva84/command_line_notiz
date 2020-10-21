@@ -1,15 +1,26 @@
 class CommandRegistry
-  attr_accessor :commands
-
   def initialize
     @commands = {}
   end
 
-  def hash_commands
-    ObjectSpace.each_object(Class).select do |klass|
-      commands[klass.name_command] = klass if (klass < Command)
-    end
-
-    commands
+  def register_command(command_name, class_name)
+    commands[command_name] = class_name.new(self)
   end
+
+  def command_names
+    commands.keys.sort
+  end
+
+  def command_by_name(name)
+    commands[name]
+  end
+
+  def run_command(name)
+    command = commands[name]
+    command.call if command
+  end
+
+  private
+
+  attr_reader :commands
 end

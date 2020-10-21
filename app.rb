@@ -7,10 +7,15 @@ require_relative 'lib/command_registry'
 require_relative 'lib/english_word_list'
 
 class App
-  attr_accessor :command
+  INVITE = '>>'
+
+  attr_reader :registry
 
   def initialize
-    @command = nil
+    @registry = CommandRegistry.new
+    @registry.register_command('help', Help)
+    @registry.register_command('about', About)
+    @registry.register_command('eng-wl', EnglishWordList)
   end
 
   def instruction
@@ -23,20 +28,15 @@ class App
     END
   end
 
-  def work_result
-    <<~END
-      ==================================================
-      #{print '>>'}
-      #{command = gets.chomp!}
-      #{Command.new.start_command(command)}
-      ==================================================
-    END
-  end
-
   def start
-    while command != 'exit'
-      puts instruction
-      work_result
+    puts instruction
+    loop do
+      puts '=================================================='
+      print INVITE
+      command = gets.chomp!
+      abort if command == 'exit'
+      registry.run_command(command)
+      puts '=================================================='
     end
   end
 end

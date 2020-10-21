@@ -1,68 +1,51 @@
 class EnglishWordList < Command
-  attr_accessor :word_list
-
-  def initialize
-    current_path = File.dirname(__FILE__)
-    file_path = '/date/word_english_list.txt'
-    @word_list = File.readlines(current_path + file_path)
-  end
-
-  def self.name_command
-    'eng-wl'
-  end
-
   def description
     'программа выводит английские слова и их перевод для изучения'
   end
 
-  def word_hash
-    h_words = {}
-    word_list.shuffle.each do |string|
-      string.chomp!
-      string = string.split(' ')
-      h_words[string[0].downcase] = string[1..string.size]
+  def call
+    puts instruction
+    words_arr.each do |word_hash|
+      puts word_hash[:translation]
+      input = gets.chomp.downcase
+      result_translation(input, word_hash[:eng_word])
     end
+  end
 
-    h_words
+  private
+
+  def words_list
+    File.readlines("#{Dir.pwd}/lib/date/word_english_list.txt")
+  end
+
+  def normalized_words
+    words_list.shuffle.map { |string| string.chomp.downcase.split(' ') }
+  end
+
+  def words_arr
+    normalized_words.map { |string| { eng_word: string.shift, translation: string.join(" ") } }
   end
 
   def instruction
     <<~END
-      ======================================
+      ==================================================
       Введите перевод на английском
       Введите enter для просмотра перевода
       Введите exit для выхода
-      ======================================
+      ==================================================
     END
   end
 
-  def result_translation(input, word)
+  def result_translation(input, eng_word)
     if input == 'exit'
-      App.new.start
+      abort
     elsif input == ''
-      puts 'translation of this word:'
-      puts word
-    elsif input != word
-      puts 'It is not right'
-      puts 'that is right:'
-      puts word
+      puts 'translation of this word:', eng_word
+    elsif input != eng_word
+      puts 'It is not right', 'that is right:', eng_word
     else
       puts 'Yes!)'
     end
-  end
-
-  def words_of_translation
-    word_hash.each do |word, translation|
-      puts instruction
-      puts translation
-
-      input = gets.downcase.chomp
-
-      result_translation(input, word)
-    end
-  end
-
-  def command_work
-    words_of_translation
+    puts '=================================================='
   end
 end
