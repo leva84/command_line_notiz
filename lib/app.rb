@@ -20,24 +20,22 @@ class App
 
   def instruction
     <<~END
-      ==================================================
       - Введите команду
       - введите 'help' для просмотра доступных команд
       - 'exit' для выхода
-      ==================================================
     END
   end
 
   def start
     puts instruction
     loop do
-      puts '=================================================='
       print PROMPT
       command = gets.chomp!
       abort if command == 'exit'
-      puts 'such command is not registered' unless registry.command_by_name(command)
+      unless registry.command_by_name(command)
+        puts 'such command is not registered'
+      end
       registry.run_command(command)
-      puts '=================================================='
     end
   end
 end
