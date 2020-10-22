@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require_relative 'command_registry'
-require_relative 'commands/command'
-require_relative 'commands/about'
-require_relative 'commands/help'
-require_relative 'commands/english_word_list'
+require 'command_registry'
+require 'command'
+require 'about'
+require 'help'
+require 'english_word_list'
 
 class App
   PROMPT = '>>'
@@ -20,15 +20,19 @@ class App
 
   def instruction
     <<~END
+
       - Введите команду
       - введите 'help' для просмотра доступных команд
       - 'exit' для выхода
+
     END
   end
 
   def start
     puts instruction
+    puts
     loop do
+      puts
       print PROMPT
       command = gets.chomp!
       abort if command == 'exit'

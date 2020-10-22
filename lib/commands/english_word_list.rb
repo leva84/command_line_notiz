@@ -30,9 +30,11 @@ class EnglishWordList < Command
 
   def instruction
     <<~END
+
       Введите перевод на английском
       Введите enter для просмотра перевода
       Введите exit для выхода
+
     END
   end
 
@@ -46,5 +48,6 @@ class EnglishWordList < Command
     else
       puts 'Yes!)'
     end
+    puts
   end
 end
