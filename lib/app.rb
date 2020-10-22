@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 require 'command_registry'
-require 'command'
-require 'about'
-require 'help'
-require 'english_word_list'
+require 'commands/command'
+require 'commands/about'
+require 'commands/help'
+require 'commands/english_word_list'
 
 class App
   PROMPT = '>>'
@@ -30,15 +30,12 @@ class App
 
   def start
     puts instruction
-    puts
     loop do
       puts
       print PROMPT
       command = gets.chomp!
       abort if command == 'exit'
-      unless registry.command_by_name(command)
-        puts 'such command is not registered'
-      end
+      puts 'such command is not registered' unless registry.command_by_name(command)
       registry.run_command(command)
     end
   end
