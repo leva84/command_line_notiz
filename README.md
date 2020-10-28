@@ -19,18 +19,21 @@
 ## Добавление команд
   Добавить команду можно следующим образом: 
   - создать файл `name_class_your_command.rb` в директории `/lib`
-  - подключить файл в `command_line_notiz/app.rb` с помощью `require_relative 'lib/name_class_your_command'`,
+  - подключить файл в `command_line_notiz/lib/app.rb` с помощью `require 'commands/name_class_your_command'`,
   данную строчку следует вставить в начало файла, ниже остальных подключений.
   ```
-    require_relative 'lib/command'
-    require_relative 'lib/about'
-    require_relative 'lib/help'
+    require 'command_registry'
+    require 'commands/command'
+    require 'commands/about'
+    require 'commands/help'
+    require 'commands/exit'
+    require 'commands/english_word_list'
     ...
   ```
-  - зарегистрировать клас необходимо следующим образом - в методе `initialize` класса `App`
+  - зарегистрировать класc необходимо следующим образом - в методе `registry` класса `App`
    (расположен - `command_line_nitiz/lib/app.rb`) необходимо вставить следующее:
-  `@registry.register_command('your_command_name', YourClassName)`
-  - в файл `lib/your_command_class_name.rb` внести обязательные методы, для корректной работы программы.
+  `registry.register_command('your_command_name', YourClassName)`
+  - в файл `lib/commands/your_command_class_name.rb` внести обязательные методы, для корректной работы программы.
   Так должен выглядеть шаблон вашего класса:
   ```
      class NameClassYourCommand < Command    

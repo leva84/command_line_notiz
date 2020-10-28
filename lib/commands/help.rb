@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "commands/command"
+require 'commands/command'
 
 class Help < Command
   def description

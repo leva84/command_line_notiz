@@ -4,21 +4,22 @@ require 'command_registry'
 require 'commands/command'
 require 'commands/about'
 require 'commands/help'
+require 'commands/exit'
 require 'commands/english_word_list'
 
 class App
   PROMPT = '>>'
 
-  attr_reader :registry
-
-  def initialize
-    @registry = CommandRegistry.new
-    @registry.register_command('help', Help)
-    @registry.register_command('about', About)
-    @registry.register_command('eng-wl', EnglishWordList)
+  def self.registry
+    registry = CommandRegistry.new
+    registry.register_command('help', Help)
+    registry.register_command('about', About)
+    registry.register_command('exit', Exit)
+    registry.register_command('eng-wl', EnglishWordList)
+    registry
   end
 
-  def instruction
+  def self.instruction
     <<~END
 
       - Введите команду
@@ -28,15 +29,18 @@ class App
     END
   end
 
-  def start
+  def self.start
+    registr = registry
     puts instruction
     loop do
       puts
       print PROMPT
       command = gets.chomp!
       abort if command == 'exit'
-      puts 'such command is not registered' unless registry.command_by_name(command)
-      registry.run_command(command)
+      unless registr.command_by_name(command)
+        puts 'such command is not registered'
+      end
+      registr.run_command(command)
     end
   end
 end

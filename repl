@@ -1,8 +1,9 @@
 #! /usr/bin/env ruby
 # frozen_string_literal: true
 
-$LOAD_PATH << "#{Dir.pwd}/lib"
+path = File.expand_path(__dir__)
+$LOAD_PATH << "#{path}/lib"
 
 require 'app'
 
-App.new.start
+App.start
