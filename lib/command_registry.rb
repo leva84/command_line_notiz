@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
+require 'commands/undefined'
+
 class CommandRegistry
   def initialize
-    @commands = {}
+    @commands = Hash.new(Undefined.new(self))
   end
 
   def register_command(command_name, class_name)
@@ -18,8 +20,7 @@ class CommandRegistry
   end
 
   def run_command(name)
-    command = commands[name]
-    command&.call
+    commands[name].call
   end
 
   private

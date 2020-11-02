@@ -6,6 +6,7 @@ class About < Command
   end
 
   def call
-    system('cat README.md')
+    path = File.expand_path('../../README.md', __dir__)
+    system("cat #{path}")
   end
 end

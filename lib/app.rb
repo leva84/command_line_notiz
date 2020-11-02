@@ -8,18 +8,19 @@ require 'commands/exit'
 require 'commands/english_word_list'
 
 class App
-  PROMPT = '>>'
+  PROMPT = '>> '
 
-  def self.registry
-    registry = CommandRegistry.new
-    registry.register_command('help', Help)
-    registry.register_command('about', About)
-    registry.register_command('exit', Exit)
-    registry.register_command('eng-wl', EnglishWordList)
-    registry
+  attr_reader :registry
+
+  def initialize
+    @registry = CommandRegistry.new
+    @registry.register_command('help', Help)
+    @registry.register_command('about', About)
+    @registry.register_command('exit', Exit)
+    @registry.register_command('eng-wl', EnglishWordList)
   end
 
-  def self.instruction
+  def instruction
     <<~END
 
       - Введите команду
@@ -29,18 +30,17 @@ class App
     END
   end
 
-  def self.start
-    registr = registry
+  def start
     puts instruction
     loop do
       puts
       print PROMPT
       command = gets.chomp!
-      abort if command == 'exit'
-      unless registr.command_by_name(command)
-        puts 'such command is not registered'
-      end
-      registr.run_command(command)
+      registry.run_command(command)
     end
+  end
+
+  def self.start
+    new.start
   end
 end
