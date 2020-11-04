@@ -1,10 +1,14 @@
 # frozen_string_literal: true
 
 require 'commands/undefined'
+require 'commands/help'
+require 'commands/about'
+require 'commands/exit'
 
 class CommandRegistry
   def initialize
     @commands = Hash.new(Undefined.new(self))
+    register_default_commands
   end
 
   def register_command(command_name, class_name)
@@ -26,4 +30,10 @@ class CommandRegistry
   private
 
   attr_reader :commands
+
+  def register_default_commands
+    register_command('help', Help)
+    register_command('about', About)
+    register_command('exit', Exit)
+  end
 end

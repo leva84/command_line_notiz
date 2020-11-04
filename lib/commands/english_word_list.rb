@@ -9,8 +9,8 @@ class EnglishWordList < Command
     puts instruction
     words_arr.each do |word_hash|
       puts word_hash[:translation]
-      input = gets.chomp.downcase
-      result_translation(input, word_hash[:eng_word])
+      puts result_translation(gets.chomp.downcase, word_hash[:eng_word])
+      puts
     end
   end
 
@@ -29,25 +29,17 @@ class EnglishWordList < Command
   end
 
   def instruction
-    <<~END
+    <<~HEREDOC
 
       Введите перевод на английском
       Введите enter для просмотра перевода
       Введите exit для выхода
 
-    END
+    HEREDOC
   end
 
   def result_translation(input, eng_word)
-    if input == 'exit'
-      abort
-    elsif input == ''
-      puts 'translation of this word:', eng_word
-    elsif input != eng_word
-      puts 'It is not right', 'that is right:', eng_word
-    else
-      puts 'Yes!)'
-    end
-    puts
+    registry.run_command(input) if input == 'exit' && input != eng_word
+    input == eng_word ? 'Yes !)' : "It is not right, that is right: #{eng_word}"
   end
 end

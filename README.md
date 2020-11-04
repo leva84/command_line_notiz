@@ -23,11 +23,8 @@
   данную строчку следует вставить в начало файла, ниже остальных подключений.
   ```
     require 'command_registry'
-    require 'commands/command'
-    require 'commands/about'
-    require 'commands/help'
-    require 'commands/exit'
     require 'commands/english_word_list'
+
     ...
   ```
   - зарегистрировать класc необходимо следующим образом - в методе `registry` класса `App`
