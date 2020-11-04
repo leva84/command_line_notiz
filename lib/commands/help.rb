@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'commands/command'
+
 class Help < Command
   def description
     'выводит список доступных команд'
