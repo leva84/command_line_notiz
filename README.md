@@ -24,16 +24,16 @@
   ```
     require 'command_registry'
     require 'commands/english_word_list'
-
     ...
   ```
   - зарегистрировать класc необходимо следующим образом - в методе `registry` класса `App`
    (расположен - `command_line_nitiz/lib/app.rb`) необходимо вставить следующее:
   `registry.register_command('your_command_name', YourClassName)`
   - в файл `lib/commands/your_command_class_name.rb` внести обязательные методы, для корректной работы программы.
+
   Так должен выглядеть шаблон вашего класса:
   ```
-     class NameClassYourCommand < Command    
+    class NameClassYourCommand < Command    
       def description
         # description work command
       end
