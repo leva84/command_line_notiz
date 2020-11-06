@@ -29,17 +29,19 @@
   ```
   - зарегистрировать класc необходимо следующим образом - в методе `registry` класса `App`
    (расположен - `command_line_nitiz/lib/app.rb`) необходимо вставить следующее:
-  `registry.register_command('your_command_name', YourClassName)`
+  `registry.register_command('your_command_name', Commands::YourClassName)`
   - в файл `lib/commands/your_command_class_name.rb` внести обязательные методы, для корректной работы программы.
   Так должен выглядеть шаблон вашего класса:
   ```
-     class NameClassYourCommand < Command    
-      def description
-        # description work command
-      end
+    module Commands
+      class NameClassYourCommand < Command    
+        def description
+          # description work command
+        end
     
-      def call
-        # command work result
+        def call
+          # command work result
+        end
       end
     end
   ```

@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
-require 'commands/command'
+require 'commands/base'
 
-class Undefined < Command
-  def call
-    puts 'such command is not registered'
+module Commands
+  class Undefined < Base
+    def call
+      puts 'such command is not registered'
+    end
   end
 end

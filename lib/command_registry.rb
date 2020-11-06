@@ -7,7 +7,7 @@ require 'commands/exit'
 
 class CommandRegistry
   def initialize
-    @commands = Hash.new(Undefined.new(self))
+    @commands = Hash.new(Commands::Undefined.new(self))
     register_default_commands
   end
 
@@ -32,8 +32,8 @@ class CommandRegistry
   attr_reader :commands
 
   def register_default_commands
-    register_command('help', Help)
-    register_command('about', About)
-    register_command('exit', Exit)
+    register_command('help', Commands::Help)
+    register_command('about', Commands::About)
+    register_command('exit', Commands::Exit)
   end
 end

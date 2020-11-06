@@ -10,7 +10,7 @@ class App
 
   def initialize
     @registry = CommandRegistry.new
-    @registry.register_command('eng-wl', EnglishWordList)
+    @registry.register_command('eng-wl', Commands::EnglishWordList)
   end
 
   def instruction
