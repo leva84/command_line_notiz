@@ -4,7 +4,7 @@ require 'command_registry'
 require 'commands/english_word_list'
 
 class App
-  PROMPT = '>> '
+  PROMPT = '>> '.freeze
 
   attr_reader :registry
 

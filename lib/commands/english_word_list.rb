@@ -8,7 +8,7 @@ module Commands
 
     def call
       puts instruction
-      words_arr.each do |translation|
+      translations.each do |translation|
         puts translation[:ru_word]
         puts result_translation(gets.chomp.downcase, translation)
         puts
@@ -25,7 +25,7 @@ module Commands
       words_list.shuffle.map { |string| string.chomp.downcase.split(' ') }
     end
 
-    def words_arr
+    def translations
       normalized_words.map { |string| { eng_word: string.shift, ru_word: string.join(' ') } }
     end
 
@@ -39,9 +39,9 @@ module Commands
       HEREDOC
     end
 
-    def result_translation(input, words)
-      registry.run_command(input) if input == 'exit' && !words.value?(input)
-      words.value?(input) ? 'Yes !)' : "It is not right, that is right: #{words[:eng_word]}"
+    def result_translation(input, translation)
+      registry.run_command(input) if input == 'exit' && !translation.value?(input)
+      translation.value?(input) ? 'Yes !)' : "Correct translation: #{translation[:eng_word]}"
     end
   end
 end
