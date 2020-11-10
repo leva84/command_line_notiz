@@ -2,31 +2,14 @@
 
 module Commands
   class EnglishWordList < Base
-    def description
-      'программа выводит английские слова и их перевод для изучения'
-    end
-
-    def call
-      puts instruction
-      translations.each do |translation|
-        puts translation[:ru_word]
-        puts result_translation(gets.chomp.downcase, translation)
-        puts
+    def initialize(registry)
+      super
+      @lines = File.readlines("#{Dir.pwd}/data/word_english_list.txt")
+      @lines = @lines.shuffle
+      @words = @lines.each_with_object({}) do |line, h|
+        parts = line.chomp.downcase.split(' ', 2)
+        h[parts.first] = parts.last
       end
-    end
-
-    private
-
-    def words_list
-      File.readlines("#{Dir.pwd}/data/word_english_list.txt")
-    end
-
-    def normalized_words
-      words_list.shuffle.map { |string| string.chomp.downcase.split(' ') }
-    end
-
-    def translations
-      normalized_words.map { |string| { eng_word: string.shift, ru_word: string.join(' ') } }
     end
 
     def instruction
@@ -39,9 +22,31 @@ module Commands
       HEREDOC
     end
 
-    def result_translation(input, translation)
-      registry.run_command(input) if input == 'exit' && !translation.value?(input)
-      translation.value?(input) ? 'Yes !)' : "Correct translation: #{translation[:eng_word]}"
+    def description
+      'программа выводит английские слова и их перевод для изучения'
+    end
+
+    def call
+      puts instruction
+      words.each do |word, translations|
+        puts "#{translations} => "
+        request_user_choice
+        puts response(word)
+        puts
+      end
+    end
+
+    private
+
+    attr_reader :words, :user_choice
+
+    def request_user_choice
+      @user_choice = gets.chomp.downcase
+      registry.run_command(user_choice) if user_choice == 'exit'
+    end
+
+    def response(word)
+      word == user_choice ? 'Yes !)' : "Correct translation: #{word}"
     end
   end
 end
