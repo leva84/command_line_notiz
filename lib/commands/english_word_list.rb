@@ -8,7 +8,7 @@ module Commands
       @lines = @lines.shuffle
       @words = @lines.each_with_object({}) do |line, h|
         parts = line.chomp.downcase.split(' ', 2)
-        h[parts.first] = parts.last
+        h[parts.first] = [parts.last]
       end
     end
 
@@ -46,7 +46,7 @@ module Commands
     end
 
     def response(word)
-      word == user_choice ? 'Yes !)' : "Correct translation: #{word}"
+      word == user_choice ? 'Yes !)' : "Correct translation: [#{word}]"
     end
   end
 end
